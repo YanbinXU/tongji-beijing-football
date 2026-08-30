@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同济大学北京校友足球队 2026 年度赛况统计</title>
+
+    <style>
+      :root {
+        --pl-purple: #1a4f8b;      /* 同济主题蓝（主色） */
+        --pl-pink: #e90052;        /* 荣誉红（点缀/强调） */
+        --pl-teal: #00b2a9;        /* 青（内训标签/卡片点缀） */
+        --pl-green: #00ff85;       /* 荧光绿（准线点缀） */
+        --ink: #1a1a2e;
+        --ink-light: #6b6b7b;
+        --bg: #f4f5f8;
+        --card-bg: #ffffff;
+        --border: #e7e7ec;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Noto Sans SC", "PingFang SC", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.55;
+        padding: clamp(10px, 3vw, 28px);
+      }
+      .container {
+        max-width: 1080px;
+        margin: 0 auto;
+      }
+
+      /* ---------- 页头 ---------- */
+      .header {
+        background: linear-gradient(120deg, #123f73 0%, #1a4f8b 55%, #2a6cb8 100%);
+        color: #fff;
+        padding: clamp(22px, 5vw, 44px);
+        border-radius: 16px;
+        margin-bottom: clamp(14px, 3vw, 24px);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 4px solid var(--pl-green);
+      }
+      .header::after {
+        content: "";
+        position: absolute; right: -40px; top: -40px;
+        width: 200px; height: 200px;
+        background: radial-gradient(circle, rgba(0,215,173,.16), transparent 70%);
+        border-radius: 50%;
+      }
+      .header h1 {
+        font-size: clamp(20px, 4vw, 30px);
+        margin-bottom: 8px;
+        letter-spacing: 0.3px;
+        font-weight: 700;
+      }
+      .header .subtitle { font-size: clamp(12px, 2.4vw, 14px); opacity: .85; }
+      .header .update-time { font-size: 11px; opacity: .62; margin-top: 8px; }
+
+      /* ---------- 板块卡片 ---------- */
+      .section {
+        background: var(--card-bg);
+        border-radius: 14px;
+        padding: clamp(16px, 3.4vw, 26px);
+        margin-bottom: clamp(12px, 2.4vw, 20px);
+        box-shadow: 0 1px 3px rgba(20,20,40,.05), 0 8px 24px rgba(56,0,60,.04);
+        border: 1px solid var(--border);
+      }
+      .section h3 {
+        font-size: clamp(16px, 3vw, 19px);
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid var(--pl-purple);
+        color: var(--pl-purple);
+        letter-spacing: .2px;
+        text-transform: uppercase;
+      }
+
+      /* ---------- 表格（英超式：紫表头 + 斑马行） ---------- */
+      .stats-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      .stats-table thead th {
+        background: var(--pl-purple);
+        color: #fff;
+        padding: 10px 12px;
+        text-align: left;
+        font-weight: 600;
+        letter-spacing: .3px;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+      .stats-table thead th:first-child { border-top-left-radius: 8px; }
+      .stats-table thead th:last-child { border-top-right-radius: 8px; }
+      .stats-table tbody tr:nth-child(even) { background: #f6f8fb; }
+      .stats-table tbody tr:hover { background: #eef3fa; }
+      .stats-table td {
+        padding: 9px 12px;
+        border-bottom: 1px solid var(--border);
+        white-space: nowrap;
+      }
+      .stats-table tbody tr:last-child td { border-bottom: none; }
+      .stats-table .rank { font-weight: 700; width: 58px; color: var(--pl-pink); }
+      .stats-table .player-name { font-weight: 700; }
+      .stats-table .points { font-weight: 700; color: var(--pl-purple); }
+
+      /* ---------- 类型标签 ---------- */
+      .tag {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .2px;
+      }
+      .tag-内训 { background: var(--pl-teal); color: #fff; }
+      .tag-友谊赛 { background: var(--pl-purple); color: #fff; }
+      .tag-正式比赛 { background: var(--pl-pink); color: #fff; }
+
+      /* ---------- Tab 导航（居中） ---------- */
+      .tabs {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+      .tab-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+      }
+      .tab-row > .tab-btn { flex: 1 1 auto; }
+      .tab-btn {
+        padding: 9px 18px;
+        border: 1.5px solid var(--pl-purple);
+        border-radius: 999px;
+        background: #fff;
+        color: var(--pl-purple);
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all .18s ease;
+      }
+      .tab-btn:hover { background: #eef3fa; }
+      .tab-btn.active {
+        background: var(--pl-purple);
+        color: #fff;
+        box-shadow: 0 2px 8px rgba(26,79,139,.30);
+      }
+      .tab-content { display: none; }
+      .tab-content.active { display: block; }
+
+      /* ---------- 球员手风琴 ---------- */
+      .player-detail { margin-bottom: 8px; }
+      .player-detail summary {
+        padding: 11px 14px;
+        background: #f6f8fb;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--pl-purple);
+        transition: background .18s;
+        list-style: none;
+      }
+      .player-detail summary::-webkit-details-marker { display: none; }
+      .player-detail summary::before { content: "▸"; margin-right: 8px; display:inline-block; transition: transform .18s; }
+      .player-detail[open] summary::before { transform: rotate(90deg); }
+      .player-detail summary:hover { background: #eef3fa; }
+      .player-detail .stats-table { margin-top: 8px; }
+
+      /* ---------- 积分规则 ---------- */
+      .rules-box {
+        background: linear-gradient(180deg, #f1f5fb, #fdfeff);
+        border: 1px solid #d7e3f5;
+        border-radius: 12px;
+        padding: 18px 20px;
+      }
+      .rules-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+      .rules-table th, .rules-table td { padding: 8px 12px; border: 1px solid #d3e0f2; text-align: center; }
+      .rules-table th { background: var(--pl-purple); color: #fff; }
+      .rules-table tbody tr:nth-child(even) { background: #f6f8fb; }
+      .rules-note { font-size: 13px; color: var(--ink-light); margin-top: 8px; line-height: 1.9; }
+
+      /* ---------- 概览指标卡 ---------- */
+      .summary-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: clamp(10px, 2vw, 16px);
+        margin-bottom: clamp(14px, 2.6vw, 20px);
+      }
+      .summary-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-top: 3px solid var(--pl-purple);
+        border-radius: 12px;
+        padding: clamp(12px, 2.6vw, 20px) 12px;
+        text-align: center;
+        box-shadow: 0 1px 3px rgba(20,20,40,.05);
+      }
+      .summary-card:nth-child(2n) { border-top-color: var(--pl-teal); }
+      .summary-card:nth-child(3n) { border-top-color: var(--pl-pink); }
+      .summary-card .number {
+        font-size: clamp(24px, 6vw, 36px);
+        font-weight: 800;
+        color: var(--pl-purple);
+        line-height: 1.1;
+      }
+      .summary-card .label {
+        font-size: 12px;
+        color: var(--ink-light);
+        margin-top: 6px;
+        letter-spacing: .2px;
+      }
+
+      /* ---------- 手机端优化 ---------- */
+      @media (max-width: 640px) {
+        body { padding: 10px; }
+        .header { padding: 20px 14px; border-radius: 12px; }
+        .section { padding: 14px; border-radius: 12px; }
+        .tab-row { gap: 6px; }
+        .tab-btn { flex: 1 1 auto; padding: 8px 10px; font-size: 13px; min-width: 0; }
+        .summary-cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .summary-card .number { font-size: 28px; }
+        .summary-card .label { font-size: 11px; }
+        /* 表格横向滚动，避免挤压 */
+        .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .stats-table th, .stats-table td { padding: 7px 8px; }
+      }
+    </style>
+    
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>⚽ 同济大学北京校友足球队 2026 年度赛况统计</h1>
+    <div class="subtitle">共 21 场活动（内训 10场、友谊赛 11场）</div>
+    <div class="update-time">更新于 2026-08-30 11:54</div>
+  </div>
+
+  
+    <div class="summary-cards">
+      <div class="summary-card">
+        <div class="number">21</div>
+        <div class="label">总场次</div>
+      </div>
+      <div class="summary-card">
+        <div class="number">39</div>
+        <div class="label">活跃人数（当年·去重）</div>
+      </div>
+      <div class="summary-card">
+        <div class="number">217</div>
+        <div class="label">总出场人次</div>
+      </div>
+      <div class="summary-card">
+        <div class="number">237</div>
+        <div class="label">总进球</div>
+      </div>
+      <div class="summary-card">
+        <div class="number">149</div>
+        <div class="label">总助攻</div>
+      </div>
+    </div>
+    
+
+  
+    <div class="tabs">
+      <div class="tab-row">
+        <button class="tab-btn active" onclick="switchTab('total')">🏆 总积分榜</button>
+      </div>
+      <div class="tab-row">
+        <button class="tab-btn" onclick="switchTab('internal')">🏃 内部积分榜</button>
+        <button class="tab-btn" onclick="switchTab('match')">⚔️ 比赛积分榜</button>
+      </div>
+      <div class="tab-row">
+        <button class="tab-btn" onclick="switchTab('matches')">📋 比赛明细</button>
+        <button class="tab-btn" onclick="switchTab('players')">👥 球员明细</button>
+        <button class="tab-btn" onclick="switchTab('rules')">📋 积分规则</button>
+      </div>
+    </div>
+    
+
+  <div id="tab-total" class="tab-content active">
+    <h3>🏆 总积分榜（所有活动）</h3>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>排名</th><th>姓名</th><th>球衣号</th><th>出场</th><th>进球</th><th>助攻</th><th>总积分</th></tr></thead>
+<tbody>
+<tr><td class="rank">1🥇</td><td class="player-name">郑一鸣</td><td></td><td>21</td><td>58</td><td>6</td><td class="points">143.5</td></tr>
+<tr><td class="rank">2🥈</td><td class="player-name">朱新涛</td><td></td><td>16</td><td>40</td><td>21</td><td class="points">127.0</td></tr>
+<tr><td class="rank">3🥉</td><td class="player-name">张泽华</td><td></td><td>13</td><td>23</td><td>21</td><td class="points">97.5</td></tr>
+<tr><td class="rank">4</td><td class="player-name">陈巍</td><td></td><td>11</td><td>29</td><td>19</td><td class="points">90.5</td></tr>
+<tr><td class="rank">5</td><td class="player-name">许炎彬</td><td></td><td>12</td><td>16</td><td>17</td><td class="points">81.0</td></tr>
+<tr><td class="rank">6</td><td class="player-name">李欣</td><td></td><td>12</td><td>12</td><td>16</td><td class="points">74.0</td></tr>
+<tr><td class="rank">7</td><td class="player-name">王立强</td><td></td><td>12</td><td>7</td><td>11</td><td class="points">63.5</td></tr>
+<tr><td class="rank">8</td><td class="player-name">李惠光</td><td></td><td>11</td><td>14</td><td>11</td><td class="points">62.5</td></tr>
+<tr><td class="rank">9</td><td class="player-name">卜征</td><td></td><td>9</td><td>10</td><td>10</td><td class="points">54.5</td></tr>
+<tr><td class="rank">10</td><td class="player-name">张昭</td><td></td><td>11</td><td>8</td><td>4</td><td class="points">51.5</td></tr>
+<tr><td class="rank">11</td><td class="player-name">杨艳华</td><td></td><td>9</td><td>0</td><td>0</td><td class="points">33.0</td></tr>
+<tr><td class="rank">12</td><td class="player-name">刘寅</td><td></td><td>9</td><td>0</td><td>0</td><td class="points">32.0</td></tr>
+<tr><td class="rank">13</td><td class="player-name">郭胜亚</td><td></td><td>7</td><td>1</td><td>1</td><td class="points">25.0</td></tr>
+<tr><td class="rank">14</td><td class="player-name">胡昊</td><td></td><td>6</td><td>0</td><td>0</td><td class="points">21.0</td></tr>
+<tr><td class="rank">15</td><td class="player-name">陶卓辉</td><td></td><td>5</td><td>1</td><td>1</td><td class="points">21.0</td></tr>
+<tr><td class="rank">16</td><td class="player-name">周泽林</td><td></td><td>2</td><td>6</td><td>7</td><td class="points">19.0</td></tr>
+<tr><td class="rank">17</td><td class="player-name">韩啸</td><td></td><td>5</td><td>0</td><td>0</td><td class="points">19.0</td></tr>
+<tr><td class="rank">18</td><td class="player-name">朱永帆</td><td></td><td>3</td><td>4</td><td>1</td><td class="points">18.5</td></tr>
+<tr><td class="rank">19</td><td class="player-name">公技善</td><td></td><td>3</td><td>6</td><td>2</td><td class="points">18.5</td></tr>
+<tr><td class="rank">20</td><td class="player-name">张博文</td><td></td><td>5</td><td>1</td><td>0</td><td class="points">18.5</td></tr>
+<tr><td class="rank">21</td><td class="player-name">韩金</td><td></td><td>5</td><td>0</td><td>0</td><td class="points">16.0</td></tr>
+<tr><td class="rank">22</td><td class="player-name">王泽熙</td><td></td><td>4</td><td>0</td><td>0</td><td class="points">16.0</td></tr>
+<tr><td class="rank">23</td><td class="player-name">胡少康</td><td></td><td>3</td><td>0</td><td>0</td><td class="points">11.0</td></tr>
+<tr><td class="rank">24</td><td class="player-name">孙道成</td><td></td><td>3</td><td>0</td><td>0</td><td class="points">11.0</td></tr>
+<tr><td class="rank">25</td><td class="player-name">高照宇</td><td></td><td>2</td><td>0</td><td>0</td><td class="points">8.0</td></tr>
+<tr><td class="rank">26</td><td class="player-name">马名扬</td><td></td><td>2</td><td>0</td><td>0</td><td class="points">8.0</td></tr>
+<tr><td class="rank">27</td><td class="player-name">洪哲</td><td></td><td>2</td><td>0</td><td>0</td><td class="points">7.0</td></tr>
+<tr><td class="rank">28</td><td class="player-name">冯冠华</td><td></td><td>2</td><td>0</td><td>0</td><td class="points">7.0</td></tr>
+<tr><td class="rank">29</td><td class="player-name">辛纬韬</td><td></td><td>1</td><td>1</td><td>1</td><td class="points">7.0</td></tr>
+<tr><td class="rank">30</td><td class="player-name">王朋</td><td></td><td>2</td><td>0</td><td>0</td><td class="points">7.0</td></tr>
+<tr><td class="rank">31</td><td class="player-name">张哲</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td class="rank">32</td><td class="player-name">章沛俊</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td class="rank">33</td><td class="player-name">赵文赫</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td class="rank">34</td><td class="player-name">刘济州</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td class="rank">35</td><td class="player-name">刘峻赫</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">36</td><td class="player-name">谭成志</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">37</td><td class="player-name">李华</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">38</td><td class="player-name">于思洋</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">39</td><td class="player-name">逯华</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+</tbody>
+</table>
+</div>
+
+  </div>
+
+  <div id="tab-internal" class="tab-content">
+    <h3>🏃 内部积分榜（内训 + 活动）</h3>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>排名</th><th>姓名</th><th>球衣号</th><th>出场</th><th>进球</th><th>助攻</th><th>总积分</th></tr></thead>
+<tbody>
+<tr><td class="rank">1🥇</td><td class="player-name">郑一鸣</td><td></td><td>10</td><td>47</td><td>6</td><td class="points">83.0</td></tr>
+<tr><td class="rank">2🥈</td><td class="player-name">朱新涛</td><td></td><td>7</td><td>29</td><td>14</td><td class="points">64.0</td></tr>
+<tr><td class="rank">3🥉</td><td class="player-name">陈巍</td><td></td><td>5</td><td>24</td><td>17</td><td class="points">56.0</td></tr>
+<tr><td class="rank">4</td><td class="player-name">张泽华</td><td></td><td>7</td><td>14</td><td>13</td><td class="points">48.0</td></tr>
+<tr><td class="rank">5</td><td class="player-name">李惠光</td><td></td><td>8</td><td>11</td><td>11</td><td class="points">46.0</td></tr>
+<tr><td class="rank">6</td><td class="player-name">许炎彬</td><td></td><td>5</td><td>11</td><td>12</td><td class="points">38.0</td></tr>
+<tr><td class="rank">7</td><td class="player-name">李欣</td><td></td><td>5</td><td>9</td><td>13</td><td class="points">37.0</td></tr>
+<tr><td class="rank">8</td><td class="player-name">王立强</td><td></td><td>7</td><td>2</td><td>7</td><td class="points">30.0</td></tr>
+<tr><td class="rank">9</td><td class="player-name">卜征</td><td></td><td>5</td><td>6</td><td>7</td><td class="points">28.0</td></tr>
+<tr><td class="rank">10</td><td class="player-name">张昭</td><td></td><td>5</td><td>8</td><td>3</td><td class="points">26.0</td></tr>
+<tr><td class="rank">11</td><td class="player-name">周泽林</td><td></td><td>2</td><td>6</td><td>7</td><td class="points">19.0</td></tr>
+<tr><td class="rank">12</td><td class="player-name">郭胜亚</td><td></td><td>5</td><td>1</td><td>1</td><td class="points">17.0</td></tr>
+<tr><td class="rank">13</td><td class="player-name">公技善</td><td></td><td>2</td><td>5</td><td>2</td><td class="points">13.0</td></tr>
+<tr><td class="rank">14</td><td class="player-name">韩金</td><td></td><td>4</td><td>0</td><td>0</td><td class="points">12.0</td></tr>
+<tr><td class="rank">15</td><td class="player-name">刘寅</td><td></td><td>4</td><td>0</td><td>0</td><td class="points">12.0</td></tr>
+<tr><td class="rank">16</td><td class="player-name">胡昊</td><td></td><td>3</td><td>0</td><td>0</td><td class="points">9.0</td></tr>
+<tr><td class="rank">17</td><td class="player-name">杨艳华</td><td></td><td>3</td><td>0</td><td>0</td><td class="points">9.0</td></tr>
+<tr><td class="rank">18</td><td class="player-name">张博文</td><td></td><td>3</td><td>0</td><td>0</td><td class="points">9.0</td></tr>
+<tr><td class="rank">19</td><td class="player-name">陶卓辉</td><td></td><td>2</td><td>0</td><td>0</td><td class="points">6.0</td></tr>
+<tr><td class="rank">20</td><td class="player-name">朱永帆</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">21</td><td class="player-name">洪哲</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">22</td><td class="player-name">冯冠华</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">23</td><td class="player-name">胡少康</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">24</td><td class="player-name">孙道成</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">25</td><td class="player-name">刘峻赫</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">26</td><td class="player-name">王朋</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">27</td><td class="player-name">谭成志</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">28</td><td class="player-name">李华</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">29</td><td class="player-name">韩啸</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">30</td><td class="player-name">于思洋</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td class="rank">31</td><td class="player-name">逯华</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+</tbody>
+</table>
+</div>
+
+  </div>
+
+  <div id="tab-match" class="tab-content">
+    <h3>⚔️ 比赛积分榜（友谊赛 + 正式比赛）</h3>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>排名</th><th>姓名</th><th>球衣号</th><th>出场</th><th>进球</th><th>助攻</th><th>总积分</th></tr></thead>
+<tbody>
+<tr><td class="rank">1🥇</td><td class="player-name">朱新涛</td><td></td><td>9</td><td>11</td><td>7</td><td class="points">63.0</td></tr>
+<tr><td class="rank">2🥈</td><td class="player-name">郑一鸣</td><td></td><td>11</td><td>11</td><td>0</td><td class="points">60.5</td></tr>
+<tr><td class="rank">3🥉</td><td class="player-name">张泽华</td><td></td><td>6</td><td>9</td><td>8</td><td class="points">49.5</td></tr>
+<tr><td class="rank">4</td><td class="player-name">许炎彬</td><td></td><td>7</td><td>5</td><td>5</td><td class="points">43.0</td></tr>
+<tr><td class="rank">5</td><td class="player-name">李欣</td><td></td><td>7</td><td>3</td><td>3</td><td class="points">37.0</td></tr>
+<tr><td class="rank">6</td><td class="player-name">陈巍</td><td></td><td>6</td><td>5</td><td>2</td><td class="points">34.5</td></tr>
+<tr><td class="rank">7</td><td class="player-name">王立强</td><td></td><td>5</td><td>5</td><td>4</td><td class="points">33.5</td></tr>
+<tr><td class="rank">8</td><td class="player-name">卜征</td><td></td><td>4</td><td>4</td><td>3</td><td class="points">26.5</td></tr>
+<tr><td class="rank">9</td><td class="player-name">张昭</td><td></td><td>6</td><td>0</td><td>1</td><td class="points">25.5</td></tr>
+<tr><td class="rank">10</td><td class="player-name">杨艳华</td><td></td><td>6</td><td>0</td><td>0</td><td class="points">24.0</td></tr>
+<tr><td class="rank">11</td><td class="player-name">刘寅</td><td></td><td>5</td><td>0</td><td>0</td><td class="points">20.0</td></tr>
+<tr><td class="rank">12</td><td class="player-name">李惠光</td><td></td><td>3</td><td>3</td><td>0</td><td class="points">16.5</td></tr>
+<tr><td class="rank">13</td><td class="player-name">王泽熙</td><td></td><td>4</td><td>0</td><td>0</td><td class="points">16.0</td></tr>
+<tr><td class="rank">14</td><td class="player-name">韩啸</td><td></td><td>4</td><td>0</td><td>0</td><td class="points">16.0</td></tr>
+<tr><td class="rank">15</td><td class="player-name">朱永帆</td><td></td><td>2</td><td>4</td><td>1</td><td class="points">15.5</td></tr>
+<tr><td class="rank">16</td><td class="player-name">陶卓辉</td><td></td><td>3</td><td>1</td><td>1</td><td class="points">15.0</td></tr>
+<tr><td class="rank">17</td><td class="player-name">胡昊</td><td></td><td>3</td><td>0</td><td>0</td><td class="points">12.0</td></tr>
+<tr><td class="rank">18</td><td class="player-name">张博文</td><td></td><td>2</td><td>1</td><td>0</td><td class="points">9.5</td></tr>
+<tr><td class="rank">19</td><td class="player-name">高照宇</td><td></td><td>2</td><td>0</td><td>0</td><td class="points">8.0</td></tr>
+<tr><td class="rank">20</td><td class="player-name">郭胜亚</td><td></td><td>2</td><td>0</td><td>0</td><td class="points">8.0</td></tr>
+<tr><td class="rank">21</td><td class="player-name">胡少康</td><td></td><td>2</td><td>0</td><td>0</td><td class="points">8.0</td></tr>
+<tr><td class="rank">22</td><td class="player-name">孙道成</td><td></td><td>2</td><td>0</td><td>0</td><td class="points">8.0</td></tr>
+<tr><td class="rank">23</td><td class="player-name">马名扬</td><td></td><td>2</td><td>0</td><td>0</td><td class="points">8.0</td></tr>
+<tr><td class="rank">24</td><td class="player-name">辛纬韬</td><td></td><td>1</td><td>1</td><td>1</td><td class="points">7.0</td></tr>
+<tr><td class="rank">25</td><td class="player-name">公技善</td><td></td><td>1</td><td>1</td><td>0</td><td class="points">5.5</td></tr>
+<tr><td class="rank">26</td><td class="player-name">韩金</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td class="rank">27</td><td class="player-name">洪哲</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td class="rank">28</td><td class="player-name">冯冠华</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td class="rank">29</td><td class="player-name">张哲</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td class="rank">30</td><td class="player-name">王朋</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td class="rank">31</td><td class="player-name">章沛俊</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td class="rank">32</td><td class="player-name">赵文赫</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td class="rank">33</td><td class="player-name">刘济州</td><td></td><td>1</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+
+  </div>
+
+  <div id="tab-matches" class="tab-content">
+    <h3>比赛明细</h3>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>比分</th><th>出场人数</th><th>总进球</th><th>总助攻</th></tr></thead>
+<tbody>
+<tr><td>2026-08-29</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>54业余球队</td><td>未统计</td><td>8</td><td>2</td><td>1</td></tr>
+<tr><td>2026-08-22</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>未统计</td><td>13</td><td>24</td><td>21</td></tr>
+<tr><td>2026-08-16</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>首开望京体育园</td><td>望京ACE俱乐部</td><td>8:5</td><td>7</td><td>3</td><td>1</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>12:3</td><td>14</td><td>12</td><td>5</td></tr>
+<tr><td>2026-08-01</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-9号场</td><td>天大校友队</td><td>未记录</td><td>10</td><td>0</td><td>0</td></tr>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>未统计</td><td>15</td><td>9</td><td>10</td></tr>
+<tr><td>2026-07-18</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-8号场</td><td>武大校友队</td><td>未统计</td><td>10</td><td>3</td><td>0</td></tr>
+<tr><td>2026-07-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号大场</td><td>公路院</td><td>未统计</td><td>8</td><td>7</td><td>5</td></tr>
+<tr><td>2026-07-04</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>未统计</td><td>8</td><td>16</td><td>6</td></tr>
+<tr><td>2026-06-27</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>新加坡校友队</td><td>未统计</td><td>12</td><td>9</td><td>4</td></tr>
+<tr><td>2026-06-13</td><td><span class="tag tag-内训">内训</span></td><td>奥森-1号场</td><td></td><td>未统计</td><td>8</td><td>14</td><td>10</td></tr>
+<tr><td>2026-06-06</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>未统计</td><td>5</td><td>6</td><td>4</td></tr>
+<tr><td>2026-05-23</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-2号场</td><td>公路院</td><td>未统计</td><td>8</td><td>20</td><td>9</td></tr>
+<tr><td>2026-04-25</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>武大北京校友队</td><td>6:4</td><td>10</td><td>3</td><td>5</td></tr>
+<tr><td>2026-04-18</td><td><span class="tag tag-内训">内训</span></td><td>奥森-14号场</td><td></td><td>未统计</td><td>7</td><td>18</td><td>13</td></tr>
+<tr><td>2026-04-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-5号场</td><td>公路院队</td><td>未统计</td><td>10</td><td>4</td><td>5</td></tr>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>小负</td><td>16</td><td>1</td><td>1</td></tr>
+<tr><td>2026-03-14</td><td><span class="tag tag-内训">内训</span></td><td>奥森-8号场</td><td></td><td>未统计</td><td>11</td><td>35</td><td>25</td></tr>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>未统计</td><td>16</td><td>23</td><td>10</td></tr>
+<tr><td>2026-01-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>未统计</td><td>13</td><td>12</td><td>6</td></tr>
+<tr><td>2026-01-03</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>未统计</td><td>8</td><td>16</td><td>8</td></tr>
+</tbody>
+</table>
+</div>
+
+  </div>
+
+  <div id="tab-players" class="tab-content">
+    <h3>球员个人明细</h3>
+<div class="player-detail-accordion">
+<details class="player-detail">
+<summary>郑一鸣（出场21次，进球58，助攻6，总积分143.5）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-01-03</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>10</td><td>0</td><td class="points">13.0</td></tr>
+<tr><td>2026-01-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>6</td><td>0</td><td class="points">9.0</td></tr>
+<tr><td>2026-03-14</td><td><span class="tag tag-内训">内训</span></td><td>奥森-8号场</td><td></td><td>✅</td><td>6</td><td>1</td><td class="points">10.0</td></tr>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-04-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-5号场</td><td>公路院队</td><td>✅</td><td>1</td><td>0</td><td class="points">5.5</td></tr>
+<tr><td>2026-04-18</td><td><span class="tag tag-内训">内训</span></td><td>奥森-14号场</td><td></td><td>✅</td><td>5</td><td>0</td><td class="points">8.0</td></tr>
+<tr><td>2026-04-25</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>武大北京校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-05-23</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-2号场</td><td>公路院</td><td>✅</td><td>6</td><td>0</td><td class="points">13.0</td></tr>
+<tr><td>2026-06-06</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>5</td><td>0</td><td class="points">8.0</td></tr>
+<tr><td>2026-06-13</td><td><span class="tag tag-内训">内训</span></td><td>奥森-1号场</td><td></td><td>✅</td><td>7</td><td>4</td><td class="points">14.0</td></tr>
+<tr><td>2026-06-27</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>新加坡校友队</td><td>✅</td><td>1</td><td>0</td><td class="points">5.5</td></tr>
+<tr><td>2026-07-04</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>2</td><td>0</td><td class="points">5.0</td></tr>
+<tr><td>2026-07-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号大场</td><td>公路院</td><td>✅</td><td>3</td><td>0</td><td class="points">8.5</td></tr>
+<tr><td>2026-07-18</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-8号场</td><td>武大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>1</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-01</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-9号场</td><td>天大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-16</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>首开望京体育园</td><td>望京ACE俱乐部</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-22</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>5</td><td>1</td><td class="points">9.0</td></tr>
+<tr><td>2026-08-29</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>54业余球队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>朱新涛（出场16次，进球40，助攻21，总积分127.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-01-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>8</td><td>3</td><td class="points">14.0</td></tr>
+<tr><td>2026-03-14</td><td><span class="tag tag-内训">内训</span></td><td>奥森-8号场</td><td></td><td>✅</td><td>6</td><td>3</td><td class="points">12.0</td></tr>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>1</td><td class="points">5.5</td></tr>
+<tr><td>2026-04-25</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>武大北京校友队</td><td>✅</td><td>1</td><td>1</td><td class="points">7.0</td></tr>
+<tr><td>2026-05-23</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-2号场</td><td>公路院</td><td>✅</td><td>4</td><td>2</td><td class="points">13.0</td></tr>
+<tr><td>2026-06-13</td><td><span class="tag tag-内训">内训</span></td><td>奥森-1号场</td><td></td><td>✅</td><td>5</td><td>3</td><td class="points">11.0</td></tr>
+<tr><td>2026-06-27</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>新加坡校友队</td><td>✅</td><td>3</td><td>1</td><td class="points">10.0</td></tr>
+<tr><td>2026-07-04</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>4</td><td>1</td><td class="points">8.0</td></tr>
+<tr><td>2026-07-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号大场</td><td>公路院</td><td>✅</td><td>1</td><td>1</td><td class="points">7.0</td></tr>
+<tr><td>2026-07-18</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-8号场</td><td>武大校友队</td><td>✅</td><td>1</td><td>0</td><td class="points">5.5</td></tr>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>3</td><td>2</td><td class="points">8.0</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-16</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>首开望京体育园</td><td>望京ACE俱乐部</td><td>✅</td><td>1</td><td>0</td><td class="points">5.5</td></tr>
+<tr><td>2026-08-22</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>3</td><td>2</td><td class="points">8.0</td></tr>
+<tr><td>2026-08-29</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>54业余球队</td><td>✅</td><td>0</td><td>1</td><td class="points">5.5</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>张泽华（出场13次，进球23，助攻21，总积分97.5）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-01-03</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>4</td><td>2</td><td class="points">9.0</td></tr>
+<tr><td>2026-01-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-14</td><td><span class="tag tag-内训">内训</span></td><td>奥森-8号场</td><td></td><td>✅</td><td>5</td><td>4</td><td class="points">12.0</td></tr>
+<tr><td>2026-04-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-5号场</td><td>公路院队</td><td>✅</td><td>0</td><td>2</td><td class="points">7.0</td></tr>
+<tr><td>2026-04-18</td><td><span class="tag tag-内训">内训</span></td><td>奥森-14号场</td><td></td><td>✅</td><td>3</td><td>2</td><td class="points">8.0</td></tr>
+<tr><td>2026-04-25</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>武大北京校友队</td><td>✅</td><td>1</td><td>2</td><td class="points">8.5</td></tr>
+<tr><td>2026-05-23</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-2号场</td><td>公路院</td><td>✅</td><td>8</td><td>3</td><td class="points">20.5</td></tr>
+<tr><td>2026-06-06</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-06-13</td><td><span class="tag tag-内训">内训</span></td><td>奥森-1号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-08-01</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-9号场</td><td>天大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-16</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>首开望京体育园</td><td>望京ACE俱乐部</td><td>✅</td><td>0</td><td>1</td><td class="points">5.5</td></tr>
+<tr><td>2026-08-22</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>2</td><td>5</td><td class="points">10.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>陈巍（出场11次，进球29，助攻19，总积分90.5）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-01-03</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-01-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>7</td><td>3</td><td class="points">13.0</td></tr>
+<tr><td>2026-03-14</td><td><span class="tag tag-内训">内训</span></td><td>奥森-8号场</td><td></td><td>✅</td><td>7</td><td>8</td><td class="points">18.0</td></tr>
+<tr><td>2026-04-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-5号场</td><td>公路院队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-04-18</td><td><span class="tag tag-内训">内训</span></td><td>奥森-14号场</td><td></td><td>✅</td><td>4</td><td>1</td><td class="points">8.0</td></tr>
+<tr><td>2026-04-25</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>武大北京校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-06-27</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>新加坡校友队</td><td>✅</td><td>1</td><td>2</td><td class="points">8.5</td></tr>
+<tr><td>2026-07-18</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-8号场</td><td>武大校友队</td><td>✅</td><td>2</td><td>0</td><td class="points">7.0</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>✅</td><td>1</td><td>0</td><td class="points">5.5</td></tr>
+<tr><td>2026-08-22</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>6</td><td>5</td><td class="points">14.0</td></tr>
+<tr><td>2026-08-29</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>54业余球队</td><td>✅</td><td>1</td><td>0</td><td class="points">5.5</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>许炎彬（出场12次，进球16，助攻17，总积分81.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-01-03</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>2</td><td class="points">5.0</td></tr>
+<tr><td>2026-01-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>5</td><td>3</td><td class="points">11.0</td></tr>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>1</td><td>1</td><td class="points">5.0</td></tr>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-04-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-5号场</td><td>公路院队</td><td>✅</td><td>1</td><td>1</td><td class="points">7.0</td></tr>
+<tr><td>2026-04-25</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>武大北京校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-05-23</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-2号场</td><td>公路院</td><td>✅</td><td>1</td><td>2</td><td class="points">8.5</td></tr>
+<tr><td>2026-07-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号大场</td><td>公路院</td><td>✅</td><td>1</td><td>2</td><td class="points">8.5</td></tr>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>1</td><td>1</td><td class="points">5.0</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>✅</td><td>2</td><td>0</td><td class="points">7.0</td></tr>
+<tr><td>2026-08-16</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>首开望京体育园</td><td>望京ACE俱乐部</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-22</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>4</td><td>5</td><td class="points">12.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>李欣（出场12次，进球12，助攻16，总积分74.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-01-03</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>1</td><td>3</td><td class="points">7.0</td></tr>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>3</td><td>4</td><td class="points">10.0</td></tr>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-06-27</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>新加坡校友队</td><td>✅</td><td>1</td><td>0</td><td class="points">5.5</td></tr>
+<tr><td>2026-07-04</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>3</td><td>3</td><td class="points">9.0</td></tr>
+<tr><td>2026-07-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号大场</td><td>公路院</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-07-18</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-8号场</td><td>武大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>1</td><td>3</td><td class="points">7.0</td></tr>
+<tr><td>2026-08-01</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-9号场</td><td>天大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>✅</td><td>2</td><td>3</td><td class="points">11.5</td></tr>
+<tr><td>2026-08-22</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>1</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-29</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>54业余球队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>王立强（出场12次，进球7，助攻11，总积分63.5）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-01-03</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-01-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-04-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-5号场</td><td>公路院队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-04-18</td><td><span class="tag tag-内训">内训</span></td><td>奥森-14号场</td><td></td><td>✅</td><td>0</td><td>3</td><td class="points">6.0</td></tr>
+<tr><td>2026-04-25</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>武大北京校友队</td><td>✅</td><td>1</td><td>2</td><td class="points">8.5</td></tr>
+<tr><td>2026-05-23</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-2号场</td><td>公路院</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-06-06</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>1</td><td class="points">4.0</td></tr>
+<tr><td>2026-06-13</td><td><span class="tag tag-内训">内训</span></td><td>奥森-1号场</td><td></td><td>✅</td><td>2</td><td>3</td><td class="points">8.0</td></tr>
+<tr><td>2026-06-27</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>新加坡校友队</td><td>✅</td><td>3</td><td>1</td><td class="points">10.0</td></tr>
+<tr><td>2026-07-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号大场</td><td>公路院</td><td>✅</td><td>1</td><td>1</td><td class="points">7.0</td></tr>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>李惠光（出场11次，进球14，助攻11，总积分62.5）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-01-03</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>1</td><td>1</td><td class="points">5.0</td></tr>
+<tr><td>2026-01-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-14</td><td><span class="tag tag-内训">内训</span></td><td>奥森-8号场</td><td></td><td>✅</td><td>5</td><td>3</td><td class="points">11.0</td></tr>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-06-06</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>1</td><td>3</td><td class="points">7.0</td></tr>
+<tr><td>2026-06-13</td><td><span class="tag tag-内训">内训</span></td><td>奥森-1号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>1</td><td>2</td><td class="points">6.0</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>✅</td><td>1</td><td>0</td><td class="points">5.5</td></tr>
+<tr><td>2026-08-16</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>首开望京体育园</td><td>望京ACE俱乐部</td><td>✅</td><td>2</td><td>0</td><td class="points">7.0</td></tr>
+<tr><td>2026-08-22</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>3</td><td>2</td><td class="points">8.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>卜征（出场9次，进球10，助攻10，总积分54.5）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-01-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-04-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-5号场</td><td>公路院队</td><td>✅</td><td>2</td><td>2</td><td class="points">10.0</td></tr>
+<tr><td>2026-04-18</td><td><span class="tag tag-内训">内训</span></td><td>奥森-14号场</td><td></td><td>✅</td><td>3</td><td>3</td><td class="points">9.0</td></tr>
+<tr><td>2026-04-25</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>武大北京校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-07-04</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>2</td><td>2</td><td class="points">7.0</td></tr>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>1</td><td>2</td><td class="points">6.0</td></tr>
+<tr><td>2026-08-01</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-9号场</td><td>天大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>✅</td><td>2</td><td>1</td><td class="points">8.5</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>张昭（出场11次，进球8，助攻4，总积分51.5）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-03-14</td><td><span class="tag tag-内训">内训</span></td><td>奥森-8号场</td><td></td><td>✅</td><td>2</td><td>2</td><td class="points">7.0</td></tr>
+<tr><td>2026-05-23</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-2号场</td><td>公路院</td><td>✅</td><td>0</td><td>1</td><td class="points">5.5</td></tr>
+<tr><td>2026-06-06</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-06-27</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>新加坡校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-07-04</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>5</td><td>0</td><td class="points">8.0</td></tr>
+<tr><td>2026-07-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号大场</td><td>公路院</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-07-18</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-8号场</td><td>武大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>1</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-01</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-9号场</td><td>天大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-22</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>1</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>杨艳华（出场9次，进球0，助攻0，总积分33.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-04-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-5号场</td><td>公路院队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-04-25</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>武大北京校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-06-13</td><td><span class="tag tag-内训">内训</span></td><td>奥森-1号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-16</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>首开望京体育园</td><td>望京ACE俱乐部</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-22</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-08-29</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>54业余球队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>刘寅（出场9次，进球0，助攻0，总积分32.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-14</td><td><span class="tag tag-内训">内训</span></td><td>奥森-8号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-04-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-5号场</td><td>公路院队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-05-23</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-2号场</td><td>公路院</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-06-27</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>新加坡校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-07-04</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-08-01</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-9号场</td><td>天大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>郭胜亚（出场7次，进球1，助攻1，总积分25.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-01-03</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-01-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-14</td><td><span class="tag tag-内训">内训</span></td><td>奥森-8号场</td><td></td><td>✅</td><td>1</td><td>1</td><td class="points">5.0</td></tr>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-04-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-5号场</td><td>公路院队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-04-18</td><td><span class="tag tag-内训">内训</span></td><td>奥森-14号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>胡昊（出场6次，进球0，助攻0，总积分21.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-01-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-06-13</td><td><span class="tag tag-内训">内训</span></td><td>奥森-1号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-07-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号大场</td><td>公路院</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-01</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-9号场</td><td>天大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>陶卓辉（出场5次，进球1，助攻1，总积分21.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-07-04</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-07-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号大场</td><td>公路院</td><td>✅</td><td>1</td><td>1</td><td class="points">7.0</td></tr>
+<tr><td>2026-08-01</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-9号场</td><td>天大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-22</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>周泽林（出场2次，进球6，助攻7，总积分19.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-03-14</td><td><span class="tag tag-内训">内训</span></td><td>奥森-8号场</td><td></td><td>✅</td><td>3</td><td>3</td><td class="points">9.0</td></tr>
+<tr><td>2026-04-18</td><td><span class="tag tag-内训">内训</span></td><td>奥森-14号场</td><td></td><td>✅</td><td>3</td><td>4</td><td class="points">10.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>韩啸（出场5次，进球0，助攻0，总积分19.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-06-27</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>新加坡校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-07-18</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-8号场</td><td>武大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-29</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>54业余球队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>朱永帆（出场3次，进球4，助攻1，总积分18.5）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-06-13</td><td><span class="tag tag-内训">内训</span></td><td>奥森-1号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-07-18</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-8号场</td><td>武大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>✅</td><td>4</td><td>1</td><td class="points">11.5</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>公技善（出场3次，进球6，助攻2，总积分18.5）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>5</td><td>2</td><td class="points">10.0</td></tr>
+<tr><td>2026-08-22</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-08-29</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>54业余球队</td><td>✅</td><td>1</td><td>0</td><td class="points">5.5</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>张博文（出场5次，进球1，助攻0，总积分18.5）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-01-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-14</td><td><span class="tag tag-内训">内训</span></td><td>奥森-8号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>1</td><td>0</td><td class="points">5.5</td></tr>
+<tr><td>2026-06-27</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>新加坡校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>韩金（出场5次，进球0，助攻0，总积分16.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-01-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-07-18</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-8号场</td><td>武大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-08-22</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>王泽熙（出场4次，进球0，助攻0，总积分16.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-06-27</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>新加坡校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-07-18</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-8号场</td><td>武大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-01</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-9号场</td><td>天大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>胡少康（出场3次，进球0，助攻0，总积分11.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-01-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-06-27</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>新加坡校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>孙道成（出场3次，进球0，助攻0，总积分11.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-07-18</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-8号场</td><td>武大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-08</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-11号场</td><td>辽宁省实验中学校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-22</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>高照宇（出场2次，进球0，助攻0，总积分8.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-04-25</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>武大北京校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>马名扬（出场2次，进球0，助攻0，总积分8.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-04-25</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>武大北京校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-08-29</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>54业余球队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>洪哲（出场2次，进球0，助攻0，总积分7.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-03-14</td><td><span class="tag tag-内训">内训</span></td><td>奥森-8号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-04-11</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-5号场</td><td>公路院队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>冯冠华（出场2次，进球0，助攻0，总积分7.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-06-27</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-10号场</td><td>新加坡校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>辛纬韬（出场1次，进球1，助攻1，总积分7.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-05-23</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-2号场</td><td>公路院</td><td>✅</td><td>1</td><td>1</td><td class="points">7.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>王朋（出场2次，进球0，助攻0，总积分7.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>张哲（出场1次，进球0，助攻0，总积分4.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-08-16</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>首开望京体育园</td><td>望京ACE俱乐部</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>章沛俊（出场1次，进球0，助攻0，总积分4.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>赵文赫（出场1次，进球0，助攻0，总积分4.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-03-22</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>望京体育公园</td><td>望京ACE队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>刘济州（出场1次，进球0，助攻0，总积分4.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-08-01</td><td><span class="tag tag-友谊赛">友谊赛</span></td><td>奥森-9号场</td><td>天大校友队</td><td>✅</td><td>0</td><td>0</td><td class="points">4.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>刘峻赫（出场1次，进球0，助攻0，总积分3.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>谭成志（出场1次，进球0，助攻0，总积分3.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-03-07</td><td><span class="tag tag-内训">内训</span></td><td>奥森-5号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>李华（出场1次，进球0，助攻0，总积分3.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-07-04</td><td><span class="tag tag-内训">内训</span></td><td>奥森-2号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>于思洋（出场1次，进球0，助攻0，总积分3.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+<details class="player-detail">
+<summary>逯华（出场1次，进球0，助攻0，总积分3.0）</summary>
+<div class="table-scroll">
+<table class="stats-table">
+<thead><tr><th>日期</th><th>类型</th><th>场地</th><th>对手</th><th>出场</th><th>进球</th><th>助攻</th><th>积分</th></tr></thead>
+<tbody>
+<tr><td>2026-07-25</td><td><span class="tag tag-内训">内训</span></td><td>奥森-6号场</td><td></td><td>✅</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+
+  </div>
+
+  <div id="tab-rules" class="tab-content">
+    
+    <div class="rules-box">
+      <h3>📋 积分规则</h3>
+      <table class="rules-table">
+        <thead>
+          <tr><th>活动类型</th><th>活动分</th><th>进球分（每球）</th><th>助攻分（每球）</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>内训</td><td>3分</td><td>1分</td><td>1分</td></tr>
+          <tr><td>友谊赛</td><td>4分</td><td>1.5分</td><td>1.5分</td></tr>
+          <tr><td>正式比赛</td><td>5分</td><td>3分</td><td>3分</td></tr>
+        </tbody>
+      </table>
+      <p class="rules-note">⚡ 总积分 = 活动分 + 进球分 + 助攻分<br>
+      内部积分榜（仅内训）：只统计内训活动的积分<br>
+      比赛积分榜（友谊+正式）：只统计友谊赛和正式比赛的积分</p>
+    </div>
+    
+  </div>
+
+</div>
+
+    <script>
+      function switchTab(tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelector(`.tab-btn[onclick="switchTab('${tabId}')"]`).classList.add('active');
+        document.getElementById(`tab-${tabId}`).classList.add('active');
+      }
+    </script>
+    
+</body>
+</html>
