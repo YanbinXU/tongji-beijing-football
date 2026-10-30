@@ -1,0 +1,639 @@
+{
+  "update_time": "2026-10-30T08:42:44.810876",
+  "total_matches": 26,
+  "total_players": 79,
+  "leaderboard": [
+    {
+      "name": "郑一鸣",
+      "number": "",
+      "appearances": 24,
+      "goals": 58,
+      "assists": 6,
+      "total_points": 155.5
+    },
+    {
+      "name": "朱新涛",
+      "number": "",
+      "appearances": 21,
+      "goals": 44,
+      "assists": 22,
+      "total_points": 153.5
+    },
+    {
+      "name": "张泽华",
+      "number": "",
+      "appearances": 16,
+      "goals": 23,
+      "assists": 21,
+      "total_points": 108.5
+    },
+    {
+      "name": "许炎彬",
+      "number": "",
+      "appearances": 16,
+      "goals": 16,
+      "assists": 18,
+      "total_points": 98.5
+    },
+    {
+      "name": "李欣",
+      "number": "",
+      "appearances": 16,
+      "goals": 14,
+      "assists": 18,
+      "total_points": 95.0
+    },
+    {
+      "name": "陈巍",
+      "number": "",
+      "appearances": 11,
+      "goals": 29,
+      "assists": 19,
+      "total_points": 90.5
+    },
+    {
+      "name": "李惠光",
+      "number": "",
+      "appearances": 14,
+      "goals": 16,
+      "assists": 11,
+      "total_points": 76.5
+    },
+    {
+      "name": "王立强",
+      "number": "",
+      "appearances": 12,
+      "goals": 7,
+      "assists": 11,
+      "total_points": 63.5
+    },
+    {
+      "name": "张昭",
+      "number": "",
+      "appearances": 13,
+      "goals": 8,
+      "assists": 4,
+      "total_points": 59.5
+    },
+    {
+      "name": "卜征",
+      "number": "",
+      "appearances": 10,
+      "goals": 10,
+      "assists": 10,
+      "total_points": 58.5
+    },
+    {
+      "name": "杨艳华",
+      "number": "",
+      "appearances": 11,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 41.0
+    },
+    {
+      "name": "胡昊",
+      "number": "",
+      "appearances": 10,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 37.0
+    },
+    {
+      "name": "陶卓辉",
+      "number": "",
+      "appearances": 8,
+      "goals": 2,
+      "assists": 1,
+      "total_points": 33.5
+    },
+    {
+      "name": "刘寅",
+      "number": "",
+      "appearances": 9,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 32.0
+    },
+    {
+      "name": "韩啸",
+      "number": "",
+      "appearances": 8,
+      "goals": 1,
+      "assists": 0,
+      "total_points": 31.5
+    },
+    {
+      "name": "郭胜亚",
+      "number": "",
+      "appearances": 8,
+      "goals": 1,
+      "assists": 1,
+      "total_points": 29.0
+    },
+    {
+      "name": "公技善",
+      "number": "",
+      "appearances": 5,
+      "goals": 6,
+      "assists": 2,
+      "total_points": 25.5
+    },
+    {
+      "name": "朱永帆",
+      "number": "",
+      "appearances": 4,
+      "goals": 4,
+      "assists": 2,
+      "total_points": 24.0
+    },
+    {
+      "name": "王泽熙",
+      "number": "",
+      "appearances": 5,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 20.0
+    },
+    {
+      "name": "周泽林",
+      "number": "",
+      "appearances": 2,
+      "goals": 6,
+      "assists": 7,
+      "total_points": 19.0
+    },
+    {
+      "name": "韩金",
+      "number": "",
+      "appearances": 6,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 19.0
+    },
+    {
+      "name": "张博文",
+      "number": "",
+      "appearances": 5,
+      "goals": 1,
+      "assists": 0,
+      "total_points": 18.5
+    },
+    {
+      "name": "胡少康",
+      "number": "",
+      "appearances": 4,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 15.0
+    },
+    {
+      "name": "明君",
+      "number": "",
+      "appearances": 4,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 15.0
+    },
+    {
+      "name": "张哲",
+      "number": "",
+      "appearances": 3,
+      "goals": 1,
+      "assists": 0,
+      "total_points": 13.5
+    },
+    {
+      "name": "孙道成",
+      "number": "",
+      "appearances": 3,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 11.0
+    },
+    {
+      "name": "高照宇",
+      "number": "",
+      "appearances": 2,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 8.0
+    },
+    {
+      "name": "马名扬",
+      "number": "",
+      "appearances": 2,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 8.0
+    },
+    {
+      "name": "洪哲",
+      "number": "",
+      "appearances": 2,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 7.0
+    },
+    {
+      "name": "冯冠华",
+      "number": "",
+      "appearances": 2,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 7.0
+    },
+    {
+      "name": "辛纬韬",
+      "number": "",
+      "appearances": 1,
+      "goals": 1,
+      "assists": 1,
+      "total_points": 7.0
+    },
+    {
+      "name": "刘峻赫",
+      "number": "",
+      "appearances": 2,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 7.0
+    },
+    {
+      "name": "王朋",
+      "number": "",
+      "appearances": 2,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 7.0
+    },
+    {
+      "name": "章沛俊",
+      "number": "",
+      "appearances": 1,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 4.0
+    },
+    {
+      "name": "赵文赫",
+      "number": "",
+      "appearances": 1,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 4.0
+    },
+    {
+      "name": "刘济州",
+      "number": "",
+      "appearances": 1,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 4.0
+    },
+    {
+      "name": "孙璐",
+      "number": "",
+      "appearances": 1,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 4.0
+    },
+    {
+      "name": "谭成志",
+      "number": "",
+      "appearances": 1,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 3.0
+    },
+    {
+      "name": "李华",
+      "number": "",
+      "appearances": 1,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 3.0
+    },
+    {
+      "name": "于思洋",
+      "number": "",
+      "appearances": 1,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 3.0
+    },
+    {
+      "name": "逯华",
+      "number": "",
+      "appearances": 1,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 3.0
+    },
+    {
+      "name": "刘军伟",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "袁政成",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "张凡",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "陈铁夫",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "侯家泽",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "臧广海",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "冯濛",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "李衎",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "林玥煜",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "朱利群",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "王伟",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "于苏洋",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "杨卓",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "叶恒宇",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "丁焰",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "潘乐寅",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "郑浩然",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "汤京戈",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "马瑞嘉",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "崇崇",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "曾国华",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "李溯",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "孙孟虹",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "王小斌",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "殷蓬勃",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "李晓卡",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "鲁京",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "李畅",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "周宇",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "魏诗辉",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "颜金石",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "梁军涛",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "张天宇",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "李家明",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "赵铭睿",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "关振熙",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "侯禹志",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    },
+    {
+      "name": "王政",
+      "number": "",
+      "appearances": 0,
+      "goals": 0,
+      "assists": 0,
+      "total_points": 0.0
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>同济大学北京校友足球队 - 第2场战报</title>
+
+    <style>
+      :root {
+        --primary: #1a5276;
+        --primary-light: #2980b9;
+        --accent: #e74c3c;
+        --bg: #f5f7fa;
+        --card-bg: #ffffff;
+        --text: #2c3e50;
+        --text-light: #7f8c8d;
+        --border: #e0e4e8;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        padding: 20px;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .header {
+        background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        color: white;
+        padding: 30px 40px;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+      .header h1 { font-size: 28px; margin-bottom: 8px; }
+      .header .subtitle { font-size: 14px; opacity: 0.85; }
+      .header .update-time { font-size: 12px; opacity: 0.7; margin-top: 8px; }
+
+      .section {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      }
+      .section h3 {
+        font-size: 18px;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--primary);
+        color: var(--primary);
+      }
+
+      .stats-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      .stats-table th {
+        background: #f0f4f8;
+        padding: 10px 12px;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 2px solid var(--border);
+      }
+      .stats-table td {
+        padding: 8px 12px;
+        border-bottom: 1px solid var(--border);
+      }
+      .stats-table tbody tr:hover {
+        background: #f8fafc;
+      }
+      .stats-table .rank {
+        font-weight: 600;
+        width: 60px;
+      }
+      .stats-table .player-name {
+        font-weight: 600;
+      }
+      .stats-table .points {
+        font-weight: 600;
+        color: var(--accent);
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+      }
+      .tag-内训 { background: #e8f5e9; color: #2e7d32; }
+      .tag-友谊赛 { background: #e3f2fd; color: #1565c0; }
+      .tag-正式比赛 { background: #fce4ec; color: #c62828; }
+
+      .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+      .tab-btn {
+        padding: 8px 20px;
+        border: 2px solid var(--primary);
+        border-radius: 8px;
+        background: white;
+        color: var(--primary);
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+      .tab-btn:hover { background: #eaf2f8; }
+      .tab-btn.active { background: var(--primary); color: white; }
+      .tab-content { display: none; }
+      .tab-content.active { display: block; }
+
+      .player-detail { margin-bottom: 8px; }
+      .player-detail summary {
+        padding: 10px 14px;
+        background: #f8fafc;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background 0.2s;
+      }
+      .player-detail summary:hover { background: #eef2f7; }
+      .player-detail .stats-table { margin-top: 8px; }
+
+      .rules-box {
+        background: #fef9e7;
+        border: 1px solid #f9e79f;
+        border-radius: 8px;
+        padding: 16px 20px;
+      }
+      .rules-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+      .rules-table th, .rules-table td {
+        padding: 6px 12px;
+        border: 1px solid #f0e5c0;
+        text-align: center;
+      }
+      .rules-table th { background: #fdf2d7; }
+      .rules-note { font-size: 13px; color: #7f8c8d; margin-top: 8px; }
+
+      .summary-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+      .summary-card {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+      }
+      .summary-card .number {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .summary-card .label {
+        font-size: 13px;
+        color: var(--text-light);
+        margin-top: 4px;
+      }
+
+      @media (max-width: 768px) {
+        body { padding: 10px; }
+        .header { padding: 20px; }
+        .header h1 { font-size: 22px; }
+        .section { padding: 16px; }
+        .stats-table { font-size: 12px; }
+        .stats-table th, .stats-table td { padding: 6px 8px; }
+      }
+    </style>
+    
+<style>
+  .match-hero {
+    background: linear-gradient(135deg, #1a5276, #2e86c1);
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .match-hero .date { font-size: 14px; opacity: 0.8; }
+  .match-hero .vs { font-size: 24px; margin: 12px 0; }
+  .match-hero .score { font-size: 48px; font-weight: 700; margin: 8px 0; }
+  .match-hero .type { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 13px; }
+  .highlight { color: #e74c3c; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="match-hero">
+    <div class="date">&#x1F4C5; 2026-01-25</div>
+    <div class="vs">&#x1F3DF;&#xFE0F; 奥森-6号场</div>
+    
+    <div class="score">比分：未统计</div>
+    <div><span class="type tag-内训">内训</span></div>
+    
+  </div>
+
+  <div class="section">
+    <h3>&#x1F4CA; 本场数据</h3>
+    <div class="summary-cards" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="summary-card">
+        <div class="number">13</div>
+        <div class="label">出场人数</div>
+      </div>
+      <div class="summary-card">
+        <div class="number">12</div>
+        <div class="label">总进球</div>
+      </div>
+      <div class="summary-card">
+        <div class="number">6</div>
+        <div class="label">总助攻</div>
+      </div>
+      <div class="summary-card">
+        <div class="number">13.0</div>
+        <div class="label">本场最佳积分</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>&#x1F4CB; 出场球员数据</h3>
+    <table class="stats-table">
+      <thead><tr><th>姓名</th><th>球衣号</th><th>出场</th><th>进球</th><th>助攻</th><th>本场积分</th></tr></thead>
+      <tbody>
+        <tr><td class="player-name">陈巍</td><td></td><td>&#x2705;</td><td class="highlight">7</td><td class="highlight">3</td><td class="points">13.0</td></tr><tr><td class="player-name">许炎彬</td><td></td><td>&#x2705;</td><td class="highlight">5</td><td class="highlight">3</td><td class="points">11.0</td></tr><tr><td class="player-name">王立强</td><td></td><td>&#x2705;</td><td>0</td><td>0</td><td class="points">3.0</td></tr><tr><td class="player-name">张泽华</td><td></td><td>&#x2705;</td><td>0</td><td>0</td><td class="points">3.0</td></tr><tr><td class="player-name">李惠光</td><td></td><td>&#x2705;</td><td>0</td><td>0</td><td class="points">3.0</td></tr><tr><td class="player-name">郑一鸣</td><td></td><td>&#x2705;</td><td>0</td><td>0</td><td class="points">3.0</td></tr><tr><td class="player-name">卜征</td><td></td><td>&#x2705;</td><td>0</td><td>0</td><td class="points">3.0</td></tr><tr><td class="player-name">朱新涛</td><td></td><td>&#x2705;</td><td>0</td><td>0</td><td class="points">3.0</td></tr><tr><td class="player-name">胡昊</td><td></td><td>&#x2705;</td><td>0</td><td>0</td><td class="points">3.0</td></tr><tr><td class="player-name">韩金</td><td></td><td>&#x2705;</td><td>0</td><td>0</td><td class="points">3.0</td></tr><tr><td class="player-name">郭胜亚</td><td></td><td>&#x2705;</td><td>0</td><td>0</td><td class="points">3.0</td></tr><tr><td class="player-name">胡少康</td><td></td><td>&#x2705;</td><td>0</td><td>0</td><td class="points">3.0</td></tr><tr><td class="player-name">张博文</td><td></td><td>&#x2705;</td><td>0</td><td>0</td><td class="points">3.0</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+    <div class="section">    <h3>&#x26A1; 本场亮点</h3>    <ul style="padding-left:20px;line-height:2">      <li>&#x1F947; 本场最佳：<strong>陈巍</strong>（13.0分）</li>      <li>&#x26BD; 进球球员：<strong>陈巍</strong>（7球）、<strong>许炎彬</strong>（5球）</li>      <li>&#x1F3AF; 助攻球员：<strong>陈巍</strong>（3次）、<strong>许炎彬</strong>（3次）</li>      <li>&#x1F465; 共 13 名球员出战</li>    </ul>  </div>
+
+  <div class="section">
+    <h3>&#x1F4CB; 积分规则</h3>
+    
+    <div class="rules-box">
+      <h3>📋 积分规则</h3>
+      <table class="rules-table">
+        <thead>
+          <tr><th>活动类型</th><th>活动分</th><th>进球分（每球）</th><th>助攻分（每球）</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>内训</td><td>3分</td><td>1分</td><td>1分</td></tr>
+          <tr><td>友谊赛</td><td>4分</td><td>1.5分</td><td>1.5分</td></tr>
+          <tr><td>正式比赛</td><td>5分</td><td>3分</td><td>3分</td></tr>
+        </tbody>
+      </table>
+      <p class="rules-note">⚡ 总积分 = 活动分 + 进球分 + 助攻分<br>
+      内部积分榜（仅内训）：只统计内训活动的积分<br>
+      比赛积分榜（友谊+正式）：只统计友谊赛和正式比赛的积分</p>
+    </div>
+    
+  </div>
+
+  <p style="text-align:center;color:#95a5a6;font-size:12px;margin-top:20px;">
+    更新于 2026-08-21 10:28 | 同济大学北京校友足球队
+  </p>
+
+</div>
+</body>
+</html>
